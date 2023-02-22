@@ -6,35 +6,36 @@
 """
 
 print("Welcome to the tip calculator!")
+
 while True:
     try:
         bill = float(input("What was the total bill? $"))
         if bill <= 0:
-            print("Invalid input. Please enter a positive number.")
-            continue
+            raise ValueError("The bill amount must be greater than zero.")
         break
-    except ValueError:
-        print("Invalid input. Please enter a number.")
-        
+    except ValueError as e:
+        print("Invalid input:", e)
+        continue
+
 while True:
     try:
-        tip = int(input("How much tip would you like to give? 10, 12, or 15? "))
+        tip = int(input("What percentage tip would you like to give? 10, 12, or 15? "))
         if tip not in [10, 12, 15]:
-            print("Invalid input. Please enter a valid tip percentage (10, 12, or 15).")
-            continue
+            raise ValueError("The tip percentage must be 10, 12, or 15.")
         break
-    except ValueError:
-        print("Invalid input. Please enter a number.")
-        
+    except ValueError as e:
+        print("Invalid input:", e)
+        continue
+
 while True:
     try:
-        people = int(input("How many people to split the bill?"))
+        people = int(input("How many people to split the bill? "))
         if people <= 0:
-            print("Invalid input. Please enter a positive integer.")
-            continue
+            raise ValueError("The number of people must be greater than zero.")
         break
-    except ValueError:
-        print("Invalid input. Please enter an integer.")
+    except ValueError as e:
+        print("Invalid input:", e)
+        continue
 
 tip_as_percent = tip / 100
 total_tip_amount = bill * tip_as_percent
